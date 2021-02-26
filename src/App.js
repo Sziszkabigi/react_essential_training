@@ -64,9 +64,20 @@ function Fetch({login}) {
   }, []);
  
     if (data) {
-      return <div>{JSON.stringify(data)}</div>
+      //return <div>{JSON.stringify(data)}</div>
+      //Displaying data from an API...
+    return(
+      <div>
+        <h2>Fetching data from Github </h2>
+        <h1>{data.name}</h1>
+        <p>{data.location}</p>
+        <img alt={data.login} src={data.avatar_url}/>
+      </div>);
     }
-    return <div>No User available data</div>
+    return <div>
+      <h2>Fetching data from Github </h2>
+      <p> No User available data</p>
+      </div>
 };
  
 function App() {
