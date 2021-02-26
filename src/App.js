@@ -50,4 +50,20 @@ function App() {
   );
 }
 /**  we also can use fragmentation instead od div if we want */
+
+/** function AppTwo() {
+  const [emotion, setEmotion] = useState("happy");
+
+  return (
+    <>  
+      <h1>Current emotion is {emotion}.</h1>
+      <button onClick={() => setEmotion("frustrated")}>
+        Frustrated
+      </button>
+    </>
+  );
+}
+*/
+
+
 export default App;
