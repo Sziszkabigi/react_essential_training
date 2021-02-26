@@ -39,14 +39,15 @@ const dishes = [
 
 const dishObjects = dishes.map( (dish, i) => ({id : i, title: dish}))
 console.log(dishObjects);
+
 function App() {
   return (
-    <div className="App"> 
+    <div className="App">  
      <Header name="Brigi"/>
      <Main adjective="delicious" dishes={dishObjects}/>
      <Footer year={new Date().getFullYear()}/>
     </div>
   );
 }
-
+/**  we also can use fragmentation instead od div if we want */
 export default App;
