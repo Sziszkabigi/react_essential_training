@@ -1,3 +1,4 @@
+import { useReducer } from 'react';
 import './App.css';
 
    
@@ -40,30 +41,28 @@ const dishes = [
 const dishObjects = dishes.map( (dish, i) => ({id : i, title: dish}))
 console.log(dishObjects);
 
+function Checkbox() {
+  const [ checked, toggle] = useReducer(
+    (checked) => !checked,
+    false
+  );
+
+  return (
+    <>
+      <input type="checkbox" />
+    </>
+  );
+}
+ 
 function App() {
   return (
     <div className="App">  
      <Header name="Brigi"/>
      <Main adjective="delicious" dishes={dishObjects}/>
+     <Checkbox/>
      <Footer year={new Date().getFullYear()}/>
     </div>
   );
 }
-/**  we also can use fragmentation instead od div if we want */
-
-/** function AppTwo() {
-  const [emotion, setEmotion] = useState("happy");
-
-  return (
-    <>  
-      <h1>Current emotion is {emotion}.</h1>
-      <button onClick={() => setEmotion("frustrated")}>
-        Frustrated
-      </button>
-    </>
-  );
-}
-*/
-
 
 export default App;
