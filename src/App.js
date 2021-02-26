@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import './App.css';
+import React, {useState, useEffect } from 'react';
 
    
 function Header(props) {
@@ -22,15 +23,6 @@ function Main(props) {
     </section>
   );
 }
-
-function Footer(props){
-  return( 
-    <footer>
-      <h3>Copyright {props.year}</h3>
-    </footer> 
-  )
-} 
-
 const dishes = [
   "Mac & Cheese",
   "Salmon",
@@ -41,6 +33,14 @@ const dishes = [
 const dishObjects = dishes.map( (dish, i) => ({id : i, title: dish}))
 console.log(dishObjects);
 
+function Footer(props){
+  return( 
+    <footer>
+      <h3>Copyright {props.year}</h3>
+    </footer> 
+  );
+} 
+
 function Checkbox() {
   const [ checked, toggle] = useReducer(
     (checked) => !checked,
@@ -49,18 +49,34 @@ function Checkbox() {
 
   return (
     <>
-      <input type="checkbox" />
+      <input type="checkbox" value={checked} onChange={toggle} />
     </>
   );
 }
+
+function Fetch({login}) {
+  const [ data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://api.github.com/users/${login}`)
+      .then((response) => response.json())
+      .then(setData);
+  }, []);
+ 
+    if (data) {
+      return <div>{JSON.stringify(data)}</div>
+    }
+    return <div>No User available data</div>
+};
  
 function App() {
   return (
     <div className="App">  
      <Header name="Brigi"/>
      <Main adjective="delicious" dishes={dishObjects}/>
-     <Checkbox/>
      <Footer year={new Date().getFullYear()}/>
+     <Checkbox/>
+     <Fetch login="Sziszkabigi"/>
     </div>
   );
 }
